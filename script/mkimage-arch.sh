@@ -5,6 +5,7 @@
 set -e
 
 today=$1
+echo "Building image for $today"
 
 cd $(dirname "${BASH_SOURCE[0]}")
 
