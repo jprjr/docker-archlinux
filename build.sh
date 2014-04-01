@@ -11,4 +11,4 @@ docker run --privileged -t -i -v $(pwd)/output:/output -v $(pwd)/script:/opt/mki
 cp dockersrc/Dockerfile output/Dockerfile
 sed -i "s/##DATE##/$today/" output/Dockerfile
 git add output/Dockerfile && git commit -m "Updating Dockerfile $today"
-git add output/arch_rootfs_$today.tar.gz && git commit -m "Updating rootfs $today"
+git add output/arch_rootfs_$today.tar.xz && git commit -m "Updating rootfs $today"
