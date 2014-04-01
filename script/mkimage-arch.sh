@@ -4,6 +4,8 @@
 # requires root
 set -e
 
+today=$1
+
 cd $(dirname "${BASH_SOURCE[0]}")
 
 mkdir /run/shm
@@ -68,4 +70,4 @@ rm -rf $ROOTFS
 
 cat /output/arch_rootfs_untested.tar.xz | docker import - archtest
 docker run -t -i archtest echo Success.
-mv /output/arch_rootfs_untested.tar.xz /output/arch_rootfs.tar.xz
+mv /output/arch_rootfs_untested.tar.xz /output/arch_rootfs_$today.tar.xz
