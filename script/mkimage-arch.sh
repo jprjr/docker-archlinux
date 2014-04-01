@@ -24,7 +24,7 @@ ROOTFS=$(mktemp -d /tmp/rootfs-archlinux-XXXXXXXXXX)
 chmod 755 $ROOTFS
 
 # packages to ignore for space savings
-PKGIGNORE=linux,jfsutils,lvm2,cryptsetup,groff,man-db,man-pages,mdadm,pciutils,pcmciautils,reiserfsprogs,s-nail,xfsprogs,usbutils,texinfo,netctl,nano,dhcpcd,cronie,systemd-sysvcompat
+PKGIGNORE=linux,jfsutils,lvm2,cryptsetup,groff,man-db,man-pages,mdadm,pciutils,pcmciautils,reiserfsprogs,s-nail,xfsprogs,usbutils,texinfo,netctl,nano,dhcpcd,cronie,systemd,systemd-sysvcompat
 
 expect << EOF
   set timeout 600
