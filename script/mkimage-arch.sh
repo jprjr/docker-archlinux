@@ -11,14 +11,29 @@ cd $(dirname "${BASH_SOURCE[0]}")
 
 mkdir /run/shm
 
-pacman -Syy
+if ! mountpoint -q /sys/fs/cgroup; then
+  mount -t tmpfs -o uid=0,gid=0,mode=0755 cgroup /sys/fs/cgroup
+fi
+
+(
+cd /sys/fs/cgroup
+for sys in $(awk '!/^#/ { if ($4 == 1) print $1 }' /proc/cgroups); do
+  mkdir -p $sys
+  if ! mountpoint -q $sys; then
+    if ! mount -n -t cgroup -o $sys cgroup $sys; then
+      rmdir $sys || true
+    fi
+  fi
+done
+)
+
+pacman -Syy && pacman -Syu --noconfirm
 pacman -S --noconfirm --needed arch-install-scripts expect tar base-devel docker lxc
 
 # start docker-in-docker daemon
-nohup /opt/mkimage/wrapdocker 0<&- &>/dev/null &
-
-pacman -Syu --noconfirm
-pacman -S --noconfirm arch-install-scripts expect tar base-devel
+mkdir /var/lib/docker
+docker -d -s vfs 0<&- &>/dev/null &
+#nohup /opt/mkimage/wrapdocker 0<&- &>/dev/null &
 
 ROOTFS=$(mktemp -d /tmp/rootfs-archlinux-XXXXXXXXXX)
 chmod 755 $ROOTFS
