@@ -9,7 +9,7 @@ echo "Building image for $today"
 
 cd $(dirname "${BASH_SOURCE[0]}")
 
-mkdir /run/shm
+mkdir -p /run/shm
 
 if ! mountpoint -q /sys/fs/cgroup; then
   mount -t tmpfs -o uid=0,gid=0,mode=0755 cgroup /sys/fs/cgroup
