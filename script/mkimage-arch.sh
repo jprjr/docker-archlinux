@@ -27,6 +27,7 @@ for sys in $(awk '!/^#/ { if ($4 == 1) print $1 }' /proc/cgroups); do
 done
 )
 
+sed -i 's/^CheckSpace/#CheckSpace/g' /etc/pacman.conf
 pacman -Syy && pacman -Syu --noconfirm
 pacman -S --noconfirm --needed arch-install-scripts expect tar base-devel docker lxc
 
