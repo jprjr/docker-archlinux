@@ -86,6 +86,6 @@ ln -sf /proc/self/fd $DEV/fd
 tar --xz -f /output/arch_rootfs_untested.tar.xz --numeric-owner -C $ROOTFS -c . 
 rm -rf $ROOTFS
 
-cat /output/arch_rootfs_untested.tar.xz | docker import - archtest
-docker run -t -i archtest echo Success.
+#cat /output/arch_rootfs_untested.tar.xz | docker import - archtest
+#docker run -t -i archtest echo Success.
 mv /output/arch_rootfs_untested.tar.xz /output/arch_rootfs_$today.tar.xz
