@@ -45,7 +45,7 @@ PKGIGNORE=linux,jfsutils,lvm2,cryptsetup,groff,man-db,man-pages,mdadm,pciutils,p
 expect << EOF
   set timeout 600
   set send_slow {1 1}
-  spawn pacstrap -C ./mkimage-arch-pacman.conf -c -d -G -i $ROOTFS base haveged --ignore $PKGIGNORE
+  spawn pacstrap -C ./mkimage-arch-pacman.conf -c -d -G -i $ROOTFS base bash haveged --ignore $PKGIGNORE
   expect {
     "Install anyway?" { sleep 1; send n\r; exp_continue }
     "(default=all)" { sleep 1; send \r; exp_continue }
