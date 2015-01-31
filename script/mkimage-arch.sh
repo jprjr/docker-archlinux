@@ -28,7 +28,7 @@ done
 )
 
 sed -i 's/^CheckSpace/#CheckSpace/g' /etc/pacman.conf
-pacman -Syy && pacman -Syu --noconfirm
+pacman -Syy && pacman -Syu --noconfirm && pacman-db-upgrade
 pacman -S --noconfirm --needed arch-install-scripts expect tar base-devel docker lxc
 
 # start docker-in-docker daemon
